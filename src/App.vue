@@ -14,7 +14,7 @@ export default {
     const asideVisible = ref(width < 500 ? false : true);
     provide("asideVisible", asideVisible) // provide is just like set Method, the value stored can get by inject
 
-    // 
+    // close left aside for mobile when router changed
     router.afterEach(() => {
       if (width <= 500) {
         console.log("afterEach router change")
