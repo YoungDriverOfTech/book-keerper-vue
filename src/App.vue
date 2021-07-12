@@ -1,14 +1,13 @@
 <template>
-  <Liang></Liang>
+  <div>navigator | <router-link to="/">Liang</router-link> | <router-link to="/xxx">Liang2</router-link></div>
+  <br>
+
+  <router-view />
 </template>
 
 <script>
-import Liang from './components/Liang.vue'
 
 export default {
   name: 'App',
-  components: {
-    Liang
-  }
 }
 </script>
