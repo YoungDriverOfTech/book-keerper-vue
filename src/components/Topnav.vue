@@ -1,6 +1,6 @@
 <template>
     <div class="topnav">
-      <div class="logo">LOGO</div>
+      <div class="logo" @click="toggleMenu">LOGO</div>
       <ul class="menu">
         <li>菜单1</li>
         <li>菜单2</li>
@@ -8,9 +8,19 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { inject, Ref } from 'vue'
 export default {
-    
+    setup() {
+        const asideVisible = inject<Ref<boolean>>("asideVisible");   // 'inject' can get 'provide' attribute from parent component
+
+        // this method is used to controll whether show the aside
+        const toggleMenu = () => {
+            asideVisible.value = !asideVisible.value;
+            console.log("topNav: " + asideVisible.value);
+        }
+        return {toggleMenu}
+    }
 }
 </script>
 
