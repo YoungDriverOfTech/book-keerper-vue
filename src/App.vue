@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { provide, ref } from 'vue';
+import { router } from './router'
 export default {
   name: 'App',
   setup() {
@@ -11,10 +12,15 @@ export default {
     // width < 500 for mobilel; width > 500 for PC
     const width = document.documentElement.clientWidth;
     const asideVisible = ref(width < 500 ? false : true);
-
-    console.log("App.vue:" + asideVisible.value)
-
     provide("asideVisible", asideVisible) // provide is just like set Method, the value stored can get by inject
+
+    // 
+    router.afterEach(() => {
+      if (width <= 500) {
+        console.log("afterEach router change")
+        asideVisible.value = false;
+      }
+    });
   }
 }
 </script>
