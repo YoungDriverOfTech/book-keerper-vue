@@ -1,9 +1,10 @@
 <template>
-    <button @click="toggle" :class="{checked: value}"><span></span></button>
+    <button @click="toggle" :class="{checked: value}">
+      <span></span>
+    </button>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
 
 export default {
     props: {
@@ -13,7 +14,7 @@ export default {
     setup(props, context) {
         // this flag is used to controll span's move
         const toggle = () => {
-          context.emit('input', !props.value)
+          context.emit('update:value', !props.value)
         }
 
         return {toggle}
@@ -29,32 +30,46 @@ export default {
     height: $h;
     width: $h*2;
     border: none;
-    background: gray;
+    background: #bfbfbf;
     border-radius: $h/2;
     position: relative;
+
+    > span{
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      height: $h2;
+      width: $h2;
+      background:white;
+      border-radius: $h2 / 2;
+      // constrain change happens within given period
+      transition: all 250ms;
+    }
+
+    // use & combol represent button
+    &.checked{
+    background: #1890ff;
+    
+      > span{
+        left: calc(100% - #{$h2} - 2px);
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active{
+      > span {width: $h2 + 4px;}
+    }
+
+    // this checked attr is binded into button
+    &.checked:active{
+      > span {width: $h2 + 4px; margin-left: -4px;}
+    }
   }
 
-  span{
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: $h2;
-    width: $h2;
-    background:white;
-    border-radius: $h2 / 2;
-    // constrain change happens within given period
-    transition: left 250ms;
-  }
 
-  button.checked{
-    background: blue;
-  }
 
-  button.checked > span{
-    left: calc(100% - #{$h2} - 2px);
-  }
 
-  button:focus {
-    outline: none;
-  }
 </style>
