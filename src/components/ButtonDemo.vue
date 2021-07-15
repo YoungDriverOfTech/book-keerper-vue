@@ -50,6 +50,13 @@
         <Button theme="button" disabled>diable link</Button>
         <Button theme="button" disabled>diable text</Button>
     </div>
+     <div>
+        <br/>
+        <h1>示例5</h1>
+        <br/>
+        <Button theme="button" loading>loading button</Button>
+        <Button theme="button">loaded</Button>
+    </div>
 </template>
 
 <script lang="ts">
