@@ -1,12 +1,11 @@
 <template>
-    <!-- :class="{[`theme-&{theme}`]: theme}" can be used to bind dynamic class -->
-    <button class="gulu-button" 
-            :class="{[`gulu-theme-${theme}`]: theme}">
-            <slot />
+    <button class="gulu-button" :class="classes">
+        <slot />
     </button>
 </template>
 
 <script lang="ts">
+import { computed } from '@vue/runtime-core';
 export default {
     // the parent attrs(such as click event, properties) will be binded into component's outside element automatically
     // this attribute(false) will cancle the automate bind and the attrs need be binded manually
@@ -17,7 +16,24 @@ export default {
             type: String,
             default: `button`
         },
+        size: {
+            type: String,
+            default: `normal`
+        },
     },
+
+    setup(props) {
+        const {theme, size} = props;
+        // use computed to determine class
+        const classes = computed(() => {
+            return ({
+                // dynamic class bind
+                [`gulu-theme-${theme}`]: theme,
+                [`gulu-size-${size}`]: size
+            });
+        });
+        return {classes};
+    }
 };
 </script>
 
@@ -70,6 +86,18 @@ $radius: 4px;
     color: inherit;
     &:hover,&:focus{
       background: darken(white, 5%);;
+    }
+  }
+  &.gulu-theme-button{
+    &.gulu-size-big{
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px
+    }
+    &.gulu-size-small{
+      font-size: 12px;
+      height: 20px;
+      padding: 0 4px;
     }
   }
 }
