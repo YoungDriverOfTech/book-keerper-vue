@@ -2,7 +2,10 @@
     <div>
         <P>Button 文档</P>
         <br/>
-        <Button>
+        <Button @click="onClick"
+            @focus="onClick"
+            @mouseover="onClick"
+            @size="small">
             hello world
         </Button>
     </div>
@@ -14,6 +17,13 @@ export default {
     component: {
         Button
     },
+
+    setup() {
+        const onClick = () => {
+            console.log("wahhaha");
+        }
+        return {onClick}
+    }
 
 }
 </script>
