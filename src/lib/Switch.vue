@@ -1,5 +1,5 @@
 <template>
-    <button @click="toggle" :class="{checked: value}">
+    <button class="gulu-switch" @click="toggle" :class="{'gulu-checked': value}">
       <span></span>
     </button>
 </template>
@@ -23,10 +23,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   $h: 22px;
   $h2: $h - 4px;
-  button{
+  .gulu-switch{
     height: $h;
     width: $h*2;
     border: none;
@@ -47,7 +47,7 @@ export default {
     }
 
     // use & combol represent button
-    &.checked{
+    &.gulu-checked{
     background: #1890ff;
     
       > span{
@@ -64,7 +64,7 @@ export default {
     }
 
     // this checked attr is binded into button
-    &.checked:active{
+    &.gulu-checked:active{
       > span {width: $h2 + 4px; margin-left: -4px;}
     }
   }

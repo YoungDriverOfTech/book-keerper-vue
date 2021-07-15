@@ -1,7 +1,7 @@
 <template>
     <!-- :class="{[`theme-&{theme}`]: theme}" can be used to bind dynamic class -->
     <button class="gulu-button" 
-            :class="{[`theme-${theme}`]: theme}">
+            :class="{[`gulu-theme-${theme}`]: theme}">
             <slot />
     </button>
 </template>
@@ -15,13 +15,14 @@ export default {
     props: {
         theme: {
             type: String,
-            default: `none`
+            default: `button`
         },
     },
 };
 </script>
 
-<style lang="scss" scoped>
+// PS: the component's style lable must cancel scoped property which will generate a random string in class(data-v-xxx), we should promise our components can generate a stable class and be rewrite by other developers
+<style lang="scss">
 $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
