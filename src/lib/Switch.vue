@@ -68,8 +68,4 @@ export default {
       > span {width: $h2 + 4px; margin-left: -4px;}
     }
   }
-
-
-
-
 </style>

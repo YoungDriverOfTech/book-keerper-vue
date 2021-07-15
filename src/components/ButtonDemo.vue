@@ -1,20 +1,16 @@
 <template>
     <div>
-        <P>Button 文档</P>
-        <br/>
-        <Button @click="onClick"
-            @focus="onClick"
-            @mouseover="onClick"
-            @size="small">
-            hello world
-        </Button>
+        <Button>hello</Button>
+        <Button theme="button">hello</Button>
+        <Button theme="link">hello</Button>
+        <Button theme="text">hello</Button>
     </div>
 </template>
 
 <script lang="ts">
 import Button from '../lib/Button.vue'
 export default {
-    component: {
+    components: {
         Button
     },
 
