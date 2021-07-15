@@ -41,7 +41,15 @@
         <Button theme="text" level="main">main text</Button>
         <Button theme="text" level="normal">normal text</Button>
         <Button theme="text" level="danger">danger text</Button>
-    </div>   
+    </div>
+     <div>
+        <br/>
+        <h1>示例4</h1>
+        <br/>
+        <Button theme="button" disabled>diable button</Button>
+        <Button theme="button" disabled>diable link</Button>
+        <Button theme="button" disabled>diable text</Button>
+    </div>
 </template>
 
 <script lang="ts">
