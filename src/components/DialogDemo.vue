@@ -8,7 +8,15 @@
     <Dialog :visible="x" 
             @update:visible="x = $event"
             :ok="ok"
-            :cancle="cancle"></Dialog>
+            :cancle="cancle">
+        <template v-slot:content>
+            <strong>hi</strong>
+            <div>hi2</div>
+        </template>
+        <template v-slot:title>
+            <strong>加粗的标题</strong>
+        </template>
+    </Dialog>
     <!-- @update:visible visible is property name, and x is property value -->
 </template>
 
