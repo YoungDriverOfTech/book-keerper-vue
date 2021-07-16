@@ -1,21 +1,24 @@
 <template>
     <template v-if="visible">
-        <div class="gulu-dialog-overlay"></div>
-        <div class="gulu-dialog-wrapper">
-            <div class="gulu-dialog">
-                <header>
-                    <slot name="title" />
-                    <span class="gulu-dialog-close" @click="close"></span>
-                </header>
-                <main>
-                    <slot name="content" />
-                </main>
-                <footer>
-                    <Button level="main" @click="ok">OK</Button>
-                    <Button @click="cancle">Cancel</Button>
-                </footer>
+        <!-- use teleport let component z-index can locate in the highest layer -->
+        <Teleport to="body">
+            <div class="gulu-dialog-overlay"></div>
+            <div class="gulu-dialog-wrapper">
+                <div class="gulu-dialog">
+                    <header>
+                        <slot name="title" />
+                        <span class="gulu-dialog-close" @click="close"></span>
+                    </header>
+                    <main>
+                        <slot name="content" />
+                    </main>
+                    <footer>
+                        <Button level="main" @click="ok">OK</Button>
+                        <Button @click="cancle">Cancel</Button>
+                    </footer>
+                </div>
             </div>
-        </div>
+        </Teleport>
     </template>
 </template>
 
