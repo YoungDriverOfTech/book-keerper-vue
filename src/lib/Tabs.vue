@@ -2,11 +2,12 @@
     <div class="gulu-tabs">
         <div class="gulu-tabs-nav" ref="container">
             <div class="gulu-tabs-nav-item" 
-            v-for="(t, index) in titles" :key="index"
-            @click="select(t)"
-            :class="{selected: t===selected}"
-            :ref="el => { if (el) navItems[index] = el }">{{t}}</div>
-            
+                  v-for="(t, index) in titles" :key="index"
+                  @click="select(t)"
+                  :class="{selected: t===selected}"
+                  :ref="el => { if (t===selected) selectedItem = el }">
+              {{t}}
+            </div>
             <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
         </div>
         <div class="gulu-tabs-content">
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { onMounted, onUpdated, ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
 import Tab from "./Tab.vue"
 export default {
     props: {
@@ -30,27 +31,26 @@ export default {
     setup(props, context) {
 
         // change the indicator bar length when select different Tab label
-        const navItems = ref([]);
+        const selectedItem = ref(null)
         const indicator = ref(null);
         const container = ref(null);
 
-        // reset indicato's location and length
-        const x = () => {
-          // get selected Tab's length and set into indicator
-          const divs = navItems.value;
-          const result = divs.filter(div => div.classList.contains('selected'))[0]
-          const {width} = result.getBoundingClientRect();
-          indicator.value.style.width = width + 'px';
+        // cuz watchEffect will be executed before dom mounted, so selectedItem.value might be a null sometimes
+        // and we need place watchEffect into onMounted hook, it will be executed after onMounted hook execution finished
+        onMounted(() => {
+          watchEffect(() => {
+            // get selected Tab's length and set into indicator
+            const {width} = selectedItem.value.getBoundingClientRect();
+            indicator.value.style.width = width + 'px';
 
-          // change indicator location when change selected Tab label
-          const {left: left1} = container.value.getBoundingClientRect();
-          const {left: left2} = result.getBoundingClientRect();
-          const left = left2 - left1;
-          indicator.value.style.left = left + 'px';
-        }
-        onMounted(x);
-        onUpdated(x);
-
+            // change indicator location when change selected Tab label
+            const {left: left1} = container.value.getBoundingClientRect();
+            const {left: left2} = selectedItem.value.getBoundingClientRect();
+            const left = left2 - left1;
+            indicator.value.style.left = left + 'px';
+          })
+        })
+        
 
         // throw a error if user use div lable, rather than Tab, in the Tabs label
         const defaults = context.slots.default();
@@ -68,7 +68,7 @@ export default {
         const select = (title) => {
             context.emit('update:selected', title)
         }
-        return {defaults, titles, select, navItems, indicator, container}
+        return {defaults, titles, select, selectedItem, indicator, container}
     },
 }
 </script>
