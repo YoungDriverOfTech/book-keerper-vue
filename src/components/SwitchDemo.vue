@@ -35,11 +35,7 @@ import Button from '../lib/Button.vue'
 import Switch1Demo from './Switch1.demo.vue'
 import Switch2Demo from './Switch2.demo.vue'
 export default {
-    components: {Switch, Button, Switch1Demo, Switch2Demo},
-    setup() {
-        const bool = ref(false);
-        return {bool}
-    }
+    components: {Switch, Button, Switch1Demo, Switch2Demo}
 }
 </script>
 
