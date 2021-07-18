@@ -12,16 +12,6 @@
     </div>
   </div>
   <div class="features">
-    <!-- <svg class="icon">
-      <use xlink:href="#icon-vue"></use>
-    </svg>
-    <svg class="icon">
-      <use xlink:href="#icon-ts"></use>
-    </svg>
-    <svg class="icon">
-      <use xlink:href="#icon-light"></use>
-    </svg> -->
-
     <ul>
       <li>
         <svg>
