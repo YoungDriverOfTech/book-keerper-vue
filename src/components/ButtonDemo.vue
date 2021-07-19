@@ -1,70 +1,33 @@
 <template>
-    <div>
-        <h1>示例1</h1>
-        <br/>
-        <Button theme="button">button</Button>
-        <Button theme="link">link</Button>
-        <Button theme="text">text</Button>
-    </div>
-    <div>
-        <br/>
-        <h1>示例2</h1>
-        <br/>
-        <Button theme="button" size="small">small button</Button>
-        <Button theme="button" size="normal">normal button</Button>
-        <Button theme="button" size="big">big button</Button>
-    </div>
-    <div>
-        <Button theme="link" size="small">small link</Button>
-        <Button theme="link" size="normal">normal link</Button>
-        <Button theme="link" size="big">big link</Button>
-    </div>
-    <div>
-        <Button theme="text" size="small">small text</Button>
-        <Button theme="text" size="normal">normal text</Button>
-        <Button theme="text" size="big">big text</Button>
-    </div>
-     <div>
-        <br/>
-        <h1>示例3</h1>
-        <br/>
-        <Button theme="button" level="main">main button</Button>
-        <Button theme="button" level="normal">normal button</Button>
-        <Button theme="button" level="danger">danger button</Button>
-    </div>
-    <div>
-        <Button theme="link" level="main">main link</Button>
-        <Button theme="link" level="normal">normal link</Button>
-        <Button theme="link" level="danger">danger link</Button>
-    </div>
-    <div>
-        <Button theme="text" level="main">main text</Button>
-        <Button theme="text" level="normal">normal text</Button>
-        <Button theme="text" level="danger">danger text</Button>
-    </div>
-     <div>
-        <br/>
-        <h1>示例4</h1>
-        <br/>
-        <Button theme="button" disabled>diable button</Button>
-        <Button theme="button" disabled>diable link</Button>
-        <Button theme="button" disabled>diable text</Button>
-    </div>
-     <div>
-        <br/>
-        <h1>示例5</h1>
-        <br/>
-        <Button theme="button" loading>loading button</Button>
-        <Button theme="button">loaded</Button>
-    </div>
+   <div>
+        <div>Button 示例</div>
+        <Demo :component="Button1Demo" />
+        <Demo :component="Button2Demo" />
+        <Demo :component="Button3Demo" />
+        <Demo :component="Button4Demo" />
+        <Demo :component="Button5Demo" />
+   </div>
 </template>
 
 <script lang="ts">
-import Button from '../lib/Button.vue'
+import Demo from "./Demo.vue";
+import Button1Demo from "./Button1.demo.vue";
+import Button2Demo from "./Button2.demo.vue";
+import Button3Demo from "./Button3.demo.vue";
+import Button4Demo from "./Button4.demo.vue";
+import Button5Demo from "./Button5.demo.vue";
 export default {
     components: {
-        Button
+        Demo
     },
-
+    setup() {
+        return {      
+            Button1Demo,
+            Button2Demo,
+            Button3Demo,
+            Button4Demo,
+            Button5Demo
+        }
+    }
 }
 </script>
